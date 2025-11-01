@@ -80,7 +80,7 @@ VALIDATE $? "Copy mongo repo"
 dnf install mongodb-mongosh -y &>>LOG_FILE
 VALIDATE $? "Install MongoDB client"
 
-INDEX=$(mongosh mongodb.ayaansh123.fun --quiet --eval "db.getmongo().getDBNames().indexOf(‘catalogue')”)
+INDEX=$(mongosh mongodb.ayaansh123.fun --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')")
 if [ $INDEX -le 0 ]; then
     mongosh --host $MONGODB_HOST </app/db/master-data.js &>>$LOG_FILE
     VALIDATE $? "Load catalogue products"
@@ -89,6 +89,6 @@ else
 fi
 
 systemctl restart catalogue
-VALIDATE $? "Restarted catalogue "
+VALIDATE $? "Restarted catalogue"
 
 
