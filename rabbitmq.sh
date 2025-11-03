@@ -13,7 +13,7 @@ LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log" # /var/log/shell-script/16-logs.log
 START_TIME=$(date +%s)
 
 mkdir -p $LOGS_FOLDER
-SCRIPT_DIR=$(PWD)
+SCRIPT_DIR=$PWD
 echo "Script started executed at : $(date)" | tee -a $LOG_FILE
 
 
@@ -32,7 +32,7 @@ VALIDATE(){ #function receive inputs through args just like shell script args
     fi     
 }
 
-cp $SCRIPT_DIR/rabbitmq.repo /etc/yum.repos.d/rabbitmq.repo
+cp $SCRIPT_DIR/rabbitmq.repo /etc/yum.repos.d/rabbitmq.repo &>>LOG_FILE
 VALIDATE $? "Adding Rabbitmq repo"
 
 dnf install rabbitmq-server -y &>>LOG_FILE
@@ -44,8 +44,8 @@ VALIDATE $? "Enabling RabbitMQ Server"
 systemctl start rabbitmq-server &>>LOG_FILE
 VALIDATE $? "Starting RabbitMQ Server"
 
-rabbitmqctl add_user roboshop roboshop123
-rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
+rabbitmqctl add_user roboshop roboshop123 &>>LOG_FILE
+rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>LOG_FILE
 VALIDATE $? "Setting up permissions"
 
 
