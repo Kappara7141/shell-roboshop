@@ -32,6 +32,7 @@ VALIDATE(){ #function receive inputs through args just like shell script args
 }
 
 dnf install maven -y &>>LOG_FILE
+VALIDATE $? "Installing Maven"
 
 id roboshop &>>LOG_FILE
 if [ $? -ne 0 ]; then
