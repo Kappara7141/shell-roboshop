@@ -12,7 +12,7 @@ SCRIPT_NAME=$( echo $0 | cut -d "." -f1 )
 SCRIPT_DIR=$PWD
 MONGODB_HOST=mongodb.ayaansh123.fun
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log" # /var/log/shell-script/16-logs.log
-MYSQL_HOST="mysql.ayaansh123.fun"
+MYSQL_HOST=mysql.ayaansh123.fun
 
 if [ $USERID -ne 0 ]; then
     echo "ERROR:: Please run the script with root privilege"
