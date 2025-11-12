@@ -71,4 +71,4 @@ systemctl enable user &>>$LOG_FILE
 VALIDATE $? "Enable user"
 
 systemctl restart user
-VALIDATE $? "Restarted user1"
+VALIDATE $? "Restarted user"
