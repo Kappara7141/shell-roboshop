@@ -1,8 +1,8 @@
 #!/bin/bash
 
 AMI_ID="ami-09c813fb71547fc4f"
-SG_ID="sg-0d08e55eae8705e65" #replace with your SG_ID
-ZONE_ID="Z0185444OGP8PKEBF0VH" #replace with your ID
+SG_ID="sg-06d7a31f9f5bef8e7" #replace with your SG_ID
+ZONE_ID="Z0800790L23FXQOEPKUR" #replace with your ID
 DOMAIN_NAME="ayaansh123.fun"
 
 for instance in $@
