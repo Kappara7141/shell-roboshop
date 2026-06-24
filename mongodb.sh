@@ -36,5 +36,5 @@ VALIDATE $? "Installing mongodb"
 systemctl enable mongod
 VALIDATE $? "Enable mongodb"
 
-systemctl start mongodb
+systemctl start mongod
 VALIDATE $? "Start mongodb"
