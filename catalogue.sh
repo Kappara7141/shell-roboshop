@@ -44,7 +44,7 @@ if [ $? -ne 0 ]; then
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>LOG_FILE
     VALIDATE $? "Creating System User"
 else
-    echo "User already exist ... $Y SKIPPING $N"
+    echo -e "User already exist ... $Y SKIPPING $N"
 fi
 
 mkdir -p /app 
@@ -55,6 +55,9 @@ VALIDATE $? "Downloading catalogue application"
 
 cd /app 
 VALIDATE $? "Changing to app directory"
+
+rm -rf /app/*
+VALIDATE $? "Removing existing code"
 
 unzip /tmp/catalogue.zip &>>LOG_FILE
 VALIDATE $? "Unzip catalogue"
