@@ -80,10 +80,10 @@ VALIDATE $? "Install mongodb client"
 
 INDEX=$(mongosh mongodb.ayaansh123.fun --quiet --eval "db.detMongo().getDBName().indexOf('catalogue')")
 if [ $INDEX -le 0 ]; then
-    mongosh --host $MONGODB_HOST </app/db/master-data.js &>>LOG_FILE
+    mongosh --host $MONGODB_HOST </app/db/master-data.js &>>$LOG_FILE
     VALIDATE $? "Load catalogue products"
 else
-    echo "Catalogue products already loaded ... $Y SKIPPING $N"
+    echo -e "Catalogue products already loaded ... $Y SKIPPING $N"
 fi
 
 systemctl restart catalogue
