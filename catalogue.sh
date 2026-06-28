@@ -39,7 +39,7 @@ VALIDATE $? "Enabling NodeJS"
 dnf install nodejs -y &>>LOG_FILE
 VALIDATE $? "Installing NodeJS"
 
-id roboshop
+id roboshop >>LOG_FILE
 if [ $? -ne 0 ]; then
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>LOG_FILE
     VALIDATE $? "Creating System User"
@@ -78,8 +78,13 @@ VALIDATE $? "Copy mongo repo"
 dnf install mongodb-mongosh -y &>>LOG_FILE
 VALIDATE $? "Install mongodb client"
 
-mongosh --host $MONGODB_HOST </app/db/master-data.js &>>LOG_FILE
-VALIDATE $? "Load catalogue products"
+INDEX=$(mongosh mongodb.ayaansh123.fun --quiet --eval "db.detMongo().getDBName().indexOf('catalogue')")
+if [ $INDEX -le 0 ]; then
+    mongosh --host $MONGODB_HOST </app/db/master-data.js &>>LOG_FILE
+    VALIDATE $? "Load catalogue products"
+else
+    echo "Catalogue products already loaded ... $Y SKIPPING $N"
+fi
 
 systemctl restart catalogue
 VALIDATE $? "Restarted catalogue"
